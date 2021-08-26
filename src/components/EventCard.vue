@@ -1,8 +1,10 @@
 <template>
-  <router-link class="post" :to="{name: 'PostDetails', params: {id: post.id}}">
-    <div class="post-card">
+  <router-link class="event" :to="{name: 'EventDetails', params: {id: event.id}}">
       <!-- Display Event Data -->
-      <h4>{{ post.title }}</h4>
+    <div class="event-card -shadow">
+      <sapn class="eyebrow">@{{ event.time }} on {{ event.date }}</sapn>
+      <h4>{{ event.title }}</h4>
+      <h5>{{ event.attendees.length }}</h5>
     </div>
   </router-link>
 </template>
@@ -11,7 +13,7 @@
 export default {
   name: 'PostCard',
   props: {
-    post: {
+    event: {
       type: Object,
       required: true
     }
@@ -21,21 +23,23 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.post-card{
+.event{
+  color: #2c3e50;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+.event-card{
   border: 1px solid #39495c;
   cursor: pointer;
   width: 250px;
   margin: 0 auto 18px auto;
   padding: 20px;
 }
-.post-card:hover{
+.event-card:hover{
   transform: scale(1.01);
   box-shadow: 0 3px 12px 0 rgba(0, 0, 0, .2);
 }
 
-.post{
-  color: #2c3e50;
-  text-decoration: none;
-}
 
 </style>

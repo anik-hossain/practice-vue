@@ -1,10 +1,21 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/about">About</router-link> | 
+    <router-link :to="{name: 'EventCreate'}">Create Event</router-link>
   </div>
-  <router-view />
+  <NotificationContainer/>
+  <router-view :key="$route.fullPath" />
 </template>
+
+<script>
+import NotificationContainer from '@/components/NotificaionContainer'
+export default {
+  components: {
+    NotificationContainer
+  }
+}
+</script>
 
 <style>
 #app {

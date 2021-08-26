@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import PostDetails from '../views/PostDetails.vue';
+import EventDetails from '../views/EventDetails.vue';
+import EventCreate from '../views/EventCreate.vue';
 
 const routes = [
     {
@@ -18,10 +19,15 @@ const routes = [
             import(/* webpackChunkName: "about" */ '../views/About.vue'),
     },
     {
-        path: '/posts/:id',
-        name: 'PostDetails',
-        component: PostDetails,
+        path: '/events/:id',
+        name: 'EventDetails',
+        component: EventDetails,
         props: true,
+    },
+    {
+        path: '/events/create',
+        name: 'EventCreate',
+        component: EventCreate,
     },
 ];
 

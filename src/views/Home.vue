@@ -1,35 +1,35 @@
 <template>
   <div class="events">
-    <h1>User Posts</h1>
-    <PostCard v-for='post in posts' :key='post.id' :post='post' />
+    <h1>Events for {{ user.user.name }}</h1>
+    <EventCard v-for="event in event.events" :key="event.id" :event="event" />
+    <template v-if="page != 1">
+      <router-link :to="{naem: 'Home', query: { page: page - 1 }}" rel="prev">Prev Page</router-link> |
+    </template>
+    <router-link :to="{naem: 'Home', query: { page: page + 1 }}" rel="next">Next Page</router-link>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import PostCard from '@/components/PostCard.vue';
-import PostService from '@/services/PostService';
+import EventCard from '@/components/EventCard.vue';
+import { mapState } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
-    PostCard,
-  },
-  data(){
-    return{
-      posts: null
-    }
+    EventCard,
   },
   created(){
-    if(!this.posts){
-      PostService.getPosts()
-      .then(response =>{
-        this.posts = response.data
-      })
-      .catch(err =>{
-        console.log(err);
-      })
-    }
+    this.$store.dispatch('fetchEvents', {
+      per_page: 2,
+      page: this.page
+    })
+  },
+  computed: {
+    page(){
+      return parseInt(this.$route.query.page) || 1
+    },
+    ...mapState(['event', 'user'])
   }
 };
 </script>
