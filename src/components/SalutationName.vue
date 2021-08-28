@@ -74,7 +74,7 @@ export default {
 }
 select,
 input {
-  margin: 0 5px;
+  margin: 5px;
   padding: 5px;
 }
 </style>
