@@ -1,9 +1,10 @@
 <template>
   <div class="home">
     <SalutationName
-      v-model:salutation="form.salutation"
-      v-model:name.lazy="form.name"
+      v-model:salutation.capitalize="form.salutation"
+      v-model:name.capitalize="form.name"
     />
+    <pre>{{ form }}</pre>
   </div>
 </template>
 
